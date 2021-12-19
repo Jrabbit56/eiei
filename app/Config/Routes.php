@@ -33,9 +33,11 @@ $routes->setAutoRoute(false);
 // route since we don't have to scan directories.
 $routes->get('/', 'Home::index');
 $routes->get('/waterbill', 'WaterBill::index');
+$routes->get('/waterbill/building/(:num)', 'WaterBill::building/$1');
 $routes->get('/electricbill', 'ElectricBill::index');
 $routes->get('/paybill', 'PayBill::index');
 $routes->get('/report', 'Report::index');
+
 
 /*
  * --------------------------------------------------------------------

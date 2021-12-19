@@ -50,10 +50,10 @@ class BaseController extends Controller
         // E.g.: $this->session = \Config\Services::session();
     }
 
-    protected function renderView($viewName)
+    protected function renderView($viewName, $data = [])
     {
         echo view("templates/header");
-        echo view($viewName);
+        echo view($viewName, $data);
         echo view("templates/footer");
     }
 }
