@@ -8,7 +8,7 @@ class Home extends BaseController
 {
     public function index()
     {
-        return view('Home/index');
+        $this->renderView('Home/index');
     }
 
     public function welcome($msg)

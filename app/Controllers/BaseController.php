@@ -49,4 +49,11 @@ class BaseController extends Controller
 
         // E.g.: $this->session = \Config\Services::session();
     }
+
+    protected function renderView($viewName)
+    {
+        echo view("templates/header");
+        echo view($viewName);
+        echo view("templates/footer");
+    }
 }
