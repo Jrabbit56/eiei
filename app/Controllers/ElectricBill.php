@@ -6,6 +6,16 @@ class ElectricBill extends BaseController
 {
     public function index()
     {
-        $this->renderView('ElectricBill/index');
+        $model = model(BuildingModel::class);
+        $buildings = $model->getAllBuildings();
+        
+        
+        $this->renderView('ElectricBill/index', [
+            'buildings' => $buildings
+        ]);
+    }
+    public function building($id)
+    {
+            echo $id ;
     }
 }

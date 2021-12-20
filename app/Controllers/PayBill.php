@@ -6,6 +6,16 @@ class PayBill extends BaseController
 {
     public function index()
     {
-        $this->renderView('PayBill/index');
+        $model = model(BuildingModel::class);
+        $buildings = $model->getAllBuildings();
+        
+        
+        $this->renderView('PayBill/index', [
+            'buildings' => $buildings
+        ]);
+    }
+    public function building($id)
+    {
+            echo $id ;
     }
 }
