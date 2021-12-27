@@ -9,10 +9,11 @@ class BillModel extends Model {
     protected $primaryKey = "ID";
     protected $allowedFields = ['RoomID', 'BillingMonth', 'BillingYear', 'BillingType', 'MeterUnit'];
 
-    public function getBillByMonthAndYear($month, $year) {
+    public function getBillByMonthAndYear($month, $year, $billingType) {
         return $this->where([
             'BillingMonth' => $month,
-            'BillingYear' => $year
+            'BillingYear' => $year,
+            'BillingType' => $billingType
         ])
         ->first();
     }
