@@ -36,25 +36,25 @@ class WaterBill extends BaseController
         $thaiMonths = get_thai_months();
         $currentMonth = date('n');
         $currentYear = date('Y');
-        $meterUnit = 0;
         $lastMonthMeterUnit = 0;
 
-        $month = $this->request->getPost('BillingMonth') ?: $currentMonth;
-        $year = $this->request->getPost('BillingYear') ?: $currentYear;
+        $currentMonth = $this->request->getPost('BillingMonth') ?: date('n');
+        $currentYear = $this->request->getPost('BillingYear') ?: date('Y');
+        $meterUnit = $this->request->getPost('MeterUnit') ?: 0;
 
         // Get current month bill.
-        $bill = $model->getBillByMonthAndYear($month, $year);
+        $bill = $model->getBillByMonthAndYear($currentMonth, $currentYear);
         if(!empty($bill)) {
             $meterUnit = $bill['MeterUnit'];
         }
 
-        $lastMonth = $month;
-        $lastYear = $year;
-        if($month == 1) {
+        $lastMonth = $currentMonth;
+        $lastYear = $currentYear;
+        if($currentMonth == 1) {
             $lastMonth = 12;
-            $lastYear = $year - 1;
+            $lastYear = $currentYear - 1;
         } else {
-            $lastMonth = $month - 1;
+            $lastMonth = $currentMonth - 1;
         }
 
         $lastMonthBill = $model->getBillByMonthAndYear($lastMonth, $lastYear);
@@ -68,8 +68,8 @@ class WaterBill extends BaseController
             } else {
                 $bill = [
                     'RoomID' => $id,
-                    'BillingMonth' => $month,
-                    'BillingYear' => $year,
+                    'BillingMonth' => $currentMonth,
+                    'BillingYear' => $currentYear,
                     'BillingType' => 'WATER',
                     'MeterUnit' => $this->request->getPost('MeterUnit')
                 ];
