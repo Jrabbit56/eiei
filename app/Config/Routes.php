@@ -34,7 +34,7 @@ $routes->setAutoRoute(false);
 $routes->get('/', 'Home::index');
 $routes->get('/waterbill', 'WaterBill::index');
 $routes->get('/waterbill/building/(:num)', 'WaterBill::building/$1');
-$routes->get('/waterbill/room/(:num)', 'WaterBill::room/$1');
+$routes->match(['get', 'post'], '/waterbill/room/(:num)', 'WaterBill::room/$1');
 $routes->get('/electricbill', 'ElectricBill::index');
 $routes->get('/paybill', 'PayBill::index');
 $routes->get('/report', 'Report::index');
