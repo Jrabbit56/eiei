@@ -10,4 +10,9 @@ class RoomModel extends Model {
 
     public function getAllrooms() {
         return $this->orderBy('RoomID', 'asc')->findAll();
+    }
+    
+    public function getAllRoomsByBuildingID($buildingId) {
+        return $this->where('BuildingID', $buildingId)->orderBy('RoomNumber', 'ASC')->findAll();
+    }
 }
